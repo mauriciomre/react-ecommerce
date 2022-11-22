@@ -3,7 +3,7 @@ import Cart from "../icons/Cart";
 
 const CartWidget = () => {
     return (
-        <div>
+        <div className="mx-5">
             <span>2</span>
             <Cart />
         </div>
