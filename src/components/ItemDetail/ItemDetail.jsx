@@ -1,7 +1,8 @@
 import React from "react";
+import ItemCount from "../ItemCount/ItemCount";
 
 const ItemDetail = () => {
-    return <div>Detalle del producto</div>;
+    return <ItemCount />;
 };
 
 export default ItemDetail;

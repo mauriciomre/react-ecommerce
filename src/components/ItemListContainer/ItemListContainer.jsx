@@ -1,10 +1,10 @@
 import React from "react";
+import Item from "../Item/Item";
+import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { Productos, categorias } from "../../mock";
-import Item from "../Item/Item";
-import Row from "react-bootstrap/Row";
 
 const ItemListContainer = () => {
     const [item, setItem] = useState(Productos);
@@ -22,12 +22,14 @@ const ItemListContainer = () => {
     }, [id]);
 
     return (
-        <Row xs={1} md={3} className="g-4 container-fluid px-5 pt-4">
-            {item &&
-                item.map((producto) => {
-                    return <Item producto={producto} />;
-                })}
-        </Row>
+        <div className="listContainer">
+            <Row xs={1} md={3} className="g-4 container-fluid px-5 pt-4">
+                {item &&
+                    item.map((producto) => {
+                        return <Item producto={producto} />;
+                    })}
+            </Row>
+        </div>
     );
 };
 
