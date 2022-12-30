@@ -1,12 +1,22 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
+import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 
-const NavBar = ({ menus, categorias }) => {
-    // const categories = ["Mochilas", "Riñoneras", "Gorras"];
+const NavBar = ({ menus }) => {
+    const [categorias, setCategorias] = useState([]);
+
+    useEffect(() => {
+        const querydb = getFirestore();
+        const queryCollection = collection(querydb, "categorias");
+
+        getDocs(queryCollection).then((res) =>
+            setCategorias(res.docs.map((categoria) => ({ id: categoria.id, ...categoria.data() })))
+        );
+    }, [categorias]);
 
     return (
         <>

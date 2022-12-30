@@ -4,18 +4,18 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import NavBar from "./components/Navbar/NavBar";
 import ItemListContainer from "./components/ItemListContainer/ItemListContainer";
 import ItemDetailContainer from "./components/ItemDetailContainer/ItemDetailContainer";
-import { categorias, menus } from "./mock";
+import { menus } from "./mock";
 
 function App() {
     return (
         <BrowserRouter ClassName="App">
-            <NavBar menus={menus} categorias={categorias} />
+            <NavBar menus={menus} />
             <Routes>
                 <Route exact path="/" element={<ItemListContainer />} />
 
-                <Route exact path="/category/:id" element={<ItemListContainer />} />
+                <Route exact path="/category/:categoriaId" element={<ItemListContainer />} />
 
-                <Route exact path="/item/:id" element={<ItemDetailContainer />} />
+                <Route exact path="/item/:productoId" element={<ItemDetailContainer />} />
             </Routes>
         </BrowserRouter>
     );

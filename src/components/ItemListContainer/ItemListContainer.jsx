@@ -1,25 +1,29 @@
 import React from "react";
+import { getFirestore, collection, getDocs, query, where } from "firebase/firestore";
 import Item from "../Item/Item";
 import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { Productos, categorias } from "../../mock";
 
 const ItemListContainer = () => {
-    const [item, setItem] = useState(Productos);
-    const { id } = useParams();
-
-    const FilterCategory = new Promise((resolve, reject) => {
-        const newProductos = Productos.filter((p) => p.category == id);
-        resolve(id ? newProductos : Productos);
-    });
+    const [item, setItem] = useState([]);
+    const { categoriaId } = useParams();
 
     useEffect(() => {
-        FilterCategory.then((response) => {
-            setItem(response);
-        });
-    }, [id]);
+        const querydb = getFirestore();
+        const queryCollection = collection(querydb, "productos");
+        if (categoriaId) {
+            const queryFilter = query(queryCollection, where("category", "==", parseInt(categoriaId)));
+            getDocs(queryFilter).then((res) =>
+                setItem(res.docs.map((producto) => ({ id: producto.id, ...producto.data() })))
+            );
+        } else {
+            getDocs(queryCollection).then((res) =>
+                setItem(res.docs.map((producto) => ({ id: producto.id, ...producto.data() })))
+            );
+        }
+    }, [categoriaId]);
 
     return (
         <div className="listContainer">
