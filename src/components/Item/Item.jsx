@@ -1,8 +1,9 @@
-import React from "react";
+import React, { useContext } from "react";
+import { CartContext } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
+import { Link } from "react-router-dom";
 import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
-import { Link } from "react-router-dom";
 
 const Item = ({ producto }) => {
     const onAdd = (quantity) => {

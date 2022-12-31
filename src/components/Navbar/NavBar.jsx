@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget";
+import Cart from "../Cart/Cart";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
