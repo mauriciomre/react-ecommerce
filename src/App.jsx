@@ -9,9 +9,9 @@ import { menus } from "./mock";
 
 function App() {
     return (
-        <BrowserRouter ClassName="App">
-            <NavBar menus={menus} />
-            <CartProvider>
+        <CartProvider>
+            <BrowserRouter ClassName="App">
+                <NavBar menus={menus} />
                 <Routes>
                     <Route exact path="/" element={<ItemListContainer />} />
 
@@ -19,8 +19,8 @@ function App() {
 
                     <Route exact path="/item/:productoId" element={<ItemDetailContainer />} />
                 </Routes>
-            </CartProvider>
-        </BrowserRouter>
+            </BrowserRouter>
+        </CartProvider>
     );
 }
 

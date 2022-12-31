@@ -17,7 +17,7 @@ const NavBar = ({ menus }) => {
         getDocs(queryCollection).then((res) =>
             setCategorias(res.docs.map((categoria) => ({ id: categoria.id, ...categoria.data() })))
         );
-    }, [categorias]);
+    }, []);
 
     return (
         <>
