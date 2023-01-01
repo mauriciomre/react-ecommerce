@@ -6,10 +6,6 @@ import Card from "react-bootstrap/Card";
 import Col from "react-bootstrap/Col";
 
 const Item = ({ producto }) => {
-    const onAdd = (quantity) => {
-        console.log(`Agregaste ${quantity} unidades a tu carrito`);
-    };
-
     return (
         <Col>
             <Card>
@@ -20,7 +16,6 @@ const Item = ({ producto }) => {
                     </Link>
                     <Card.Text></Card.Text>
                 </Card.Body>
-                <ItemCount initial={1} stock={5} onAdd={onAdd} />
             </Card>
         </Col>
     );

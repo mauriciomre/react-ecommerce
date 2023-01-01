@@ -30,7 +30,7 @@ const ItemListContainer = () => {
             <Row xs={1} md={3} className="g-4 container-fluid px-5 pt-4">
                 {item &&
                     item.map((producto) => {
-                        return <Item producto={producto} />;
+                        return <Item key={producto.id} producto={producto} />;
                     })}
             </Row>
         </div>
