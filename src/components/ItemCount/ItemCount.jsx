@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { useCartContext } from "../../context/CartContext";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
@@ -26,7 +27,13 @@ const ItemCount = ({ initial, stock, onAdd }) => {
                     +
                 </Button>
             </ButtonGroup>
-            <Button disabled={stock <= 0} onClick={() => onAdd(count)} variant="primary">
+            <Button
+                disabled={stock <= 0}
+                onClick={() => {
+                    onAdd(count);
+                }}
+                variant="primary"
+            >
                 AGREGAR AL CARRITO
             </Button>
         </div>

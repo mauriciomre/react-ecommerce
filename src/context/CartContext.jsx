@@ -25,10 +25,10 @@ const CartProvider = ({ children }) => {
 
     const removeProduct = (id) => setCart(cart.filter((product) => product.id !== id));
 
-    console.log(cart);
+    const total = cart.reduce((acc, product) => acc + product.price * product.quantity, 0);
 
     return (
-        <CartContext.Provider value={{ clearCart, isInCart, removeProduct, addProduct, cart }}>
+        <CartContext.Provider value={{ clearCart, isInCart, removeProduct, addProduct, total, cart }}>
             {children}
         </CartContext.Provider>
     );

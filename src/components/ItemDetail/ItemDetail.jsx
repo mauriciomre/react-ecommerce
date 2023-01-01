@@ -17,14 +17,14 @@ const ItemDetail = ({ data }) => {
         <Container>
             <Row>
                 <Col>
-                    <img src={data.img} alt={data.name} srcset="" />
+                    <img src={data.img} alt={data.name} />
                 </Col>
                 <Col>
                     <Card>
                         <Card.Body>
                             <Card.Title>{data.name}</Card.Title>
                             <Card.Text>${data.price}</Card.Text>
-                            <ItemCount initial={1} stock={5} onAdd={onAdd} />
+                            <ItemCount initial={1} stock={data.stock} onAdd={onAdd} />
                         </Card.Body>
                     </Card>
                 </Col>

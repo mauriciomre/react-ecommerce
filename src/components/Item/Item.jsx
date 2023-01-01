@@ -8,15 +8,15 @@ import Col from "react-bootstrap/Col";
 const Item = ({ producto }) => {
     return (
         <Col>
-            <Card>
-                <Card.Img variant="top" src={producto.img} />
-                <Card.Body>
-                    <Link className="nav-link" to={`/item/${producto.id}`}>
-                        <Card.Title>{producto.name}</Card.Title>
-                    </Link>
-                    <Card.Text></Card.Text>
-                </Card.Body>
-            </Card>
+            <Link className="nav-link" to={`/item/${producto.id}`}>
+                <Card className="p-1" border="light">
+                    <Card.Img variant="top" src={producto.img} />
+                    <Card.Body>
+                        <Card.Text>{producto.name}</Card.Text>
+                        <Card.Title>${producto.price}</Card.Title>
+                    </Card.Body>
+                </Card>
+            </Link>
         </Col>
     );
 };
