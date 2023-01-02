@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 import { getFirestore, collection, getDocs } from "firebase/firestore";
 import { Link } from "react-router-dom";
 import CartWidget from "../CartWidget/CartWidget";
-import Cart from "../Cart/Cart";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
@@ -25,7 +24,7 @@ const NavBar = ({ menus }) => {
                 <Container>
                     {menus.map((menu) => {
                         return (
-                            <Link className="mx-4 navbar-brand" to={menu.href}>
+                            <Link key={menu.name} className="mx-4 navbar-brand" to={menu.href}>
                                 {menu.name}
                             </Link>
                         );
@@ -33,7 +32,11 @@ const NavBar = ({ menus }) => {
                     <Nav className="me-auto">
                         {categorias.map((categoria) => {
                             return (
-                                <Link className="mx-2 nav-link" to={`/category/${categoria.id}`}>
+                                <Link
+                                    key={categoria.id.concat(categoria.name)}
+                                    className="mx-2 nav-link"
+                                    to={`/category/${categoria.id}`}
+                                >
                                     {categoria.name}
                                 </Link>
                             );

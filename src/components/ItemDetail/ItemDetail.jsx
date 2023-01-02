@@ -2,8 +2,7 @@ import React, { useState } from "react";
 import { useCartContext } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
 import Container from "react-bootstrap/Container";
-import Row from "react-bootstrap/Row";
-import Col from "react-bootstrap/Col";
+
 import Card from "react-bootstrap/Card";
 
 const ItemDetail = ({ data }) => {
@@ -14,22 +13,20 @@ const ItemDetail = ({ data }) => {
     };
 
     return (
-        <Container>
-            <Row>
-                <Col>
-                    <img src={data.img} alt={data.name} />
-                </Col>
-                <Col>
-                    <Card>
-                        <Card.Body>
-                            <Card.Title>{data.name}</Card.Title>
-                            <Card.Text>${data.price}</Card.Text>
-                            <ItemCount initial={1} stock={data.stock} onAdd={onAdd} />
-                        </Card.Body>
-                    </Card>
-                </Col>
-            </Row>
-        </Container>
+        <div className="container mt-3 d-flex justify-content-center">
+            <div className="row justify-content-center">
+                <div className="col">
+                    <img className="itemDetailImg" src={data.img} alt={data.name} />
+                </div>
+                <div className="col">
+                    <div className="detailContainer">
+                        <span className="fs-2 bold">{data.name}</span>
+                        <span className="fs-4">${data.price}</span>
+                        <ItemCount initial={1} stock={data.stock} onAdd={onAdd} />
+                    </div>
+                </div>
+            </div>
+        </div>
     );
 };
 

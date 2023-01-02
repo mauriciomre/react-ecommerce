@@ -2,7 +2,9 @@ import React, { useState } from "react";
 import { useCartContext } from "../../context/CartContext";
 import ItemRemoveIcon from "../icons/ItemRemoveIcon";
 import Badge from "react-bootstrap/Badge";
+import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
+import { v4 as uuid } from "uuid";
 
 const CartList = () => {
     const { removeProduct, cart, total } = useCartContext();
@@ -12,30 +14,34 @@ const CartList = () => {
         result = cart
             .map((producto) => {
                 return (
-                    <div className="containe text-center border-light-subtle mb-2 p-3">
-                        <div className="row">
+                    <div key={uuid()} className="containe text-center border-light-subtle mb-2 p-3">
+                        <div key={uuid()} className="row">
                             <Link className="nav-link col-4" to={`/item/${producto.id}`}>
                                 <img className="img" src={producto.img} />
                             </Link>
 
-                            <div className="col-8 detail-item-container">
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div>{producto.name}</div>
-                                    <button className="hiddenBtn" onClick={() => removeProduct(producto.id)}>
+                            <div key={uuid()} className="col-8 detail-item-container">
+                                <div key={uuid()} className="d-flex justify-content-between align-items-center">
+                                    <div key={uuid()}>{producto.name}</div>
+                                    <button
+                                        key={uuid()}
+                                        className="hiddenBtn"
+                                        onClick={() => removeProduct(producto.id)}
+                                    >
                                         <ItemRemoveIcon />
                                     </button>
                                 </div>
 
-                                <div className="d-flex justify-content-between align-items-center">
-                                    <div className="d-flex align-items-center">
-                                        <Badge className="me-1" pill bg="light" text="secondary">
+                                <div key={uuid()} className="d-flex justify-content-between align-items-center">
+                                    <div key={uuid()} className="d-flex align-items-center">
+                                        <Badge key={uuid()} className="me-1" pill bg="light" text="secondary">
                                             ${producto.price}
                                         </Badge>
-                                        <Badge pill bg="light" text="secondary">
+                                        <Badge key={uuid()} pill bg="light" text="secondary">
                                             x{producto.quantity}
                                         </Badge>
                                     </div>
-                                    <Badge className="fs-7" pill bg="dark" text="">
+                                    <Badge key={uuid()} className="fs-7" pill bg="dark">
                                         ${producto.price * producto.quantity}
                                     </Badge>
                                 </div>
@@ -45,22 +51,36 @@ const CartList = () => {
                 );
             })
             .concat(
-                <div className="d-flex justify-content-between align-items-center">
-                    <div className="fs-2">Total:</div>
-                    <div className="fs-2 bold">${total}</div>
-                </div>
+                <>
+                    <div
+                        key={uuid()}
+                        className="d-flex justify-content-between align-items-center mb-5 pt-3 border-top"
+                    >
+                        <div key={uuid()} className="fs-2">
+                            Total:
+                        </div>
+                        <div key={uuid()} className="fs-2 bold">
+                            ${total}
+                        </div>
+                    </div>
+                    <Link to={`/checkout/${uuid()}`}>
+                        <Button className="container-fluid fs-5" variant="dark" text="light">
+                            <p className="pb-1 my-auto text-center bold">INICIAR COMPRA</p>
+                        </Button>
+                    </Link>
+                </>
             );
     } else {
         result = (
-            <div className="text-center">
-                <Badge className="fs-6 container-fluid" pill bg="light" text="dark">
+            <div key={uuid()} className="text-center">
+                <Badge key={uuid()} className="fs-6 container-fluid" pill bg="light" text="dark">
                     El carrito de compras esta vacío 😔
                 </Badge>
             </div>
         );
     }
 
-    return <div>{result}</div>;
+    return <div key={uuid()}>{result}</div>;
 };
 
 export default CartList;
