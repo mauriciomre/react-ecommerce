@@ -5,6 +5,7 @@ import CartWidget from "../CartWidget/CartWidget";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
+import { v4 as uuid } from "uuid";
 
 const NavBar = ({ menus }) => {
     const [categorias, setCategorias] = useState([]);
@@ -24,7 +25,7 @@ const NavBar = ({ menus }) => {
                 <Container>
                     {menus.map((menu) => {
                         return (
-                            <Link key={menu.name} className="mx-4 navbar-brand" to={menu.href}>
+                            <Link key={uuid()} className="mx-4 navbar-brand" to={menu.href}>
                                 {menu.name}
                             </Link>
                         );
@@ -32,11 +33,7 @@ const NavBar = ({ menus }) => {
                     <Nav className="me-auto">
                         {categorias.map((categoria) => {
                             return (
-                                <Link
-                                    key={categoria.id.concat(categoria.name)}
-                                    className="mx-2 nav-link"
-                                    to={`/category/${categoria.id}`}
-                                >
+                                <Link key={uuid()} className="mx-2 nav-link" to={`/category/${categoria.id}`}>
                                     {categoria.name}
                                 </Link>
                             );

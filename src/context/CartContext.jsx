@@ -1,5 +1,5 @@
 import React, { useState, useContext } from "react";
-
+import { getFirestore, collection, addDoc } from "firebase/firestore";
 const CartContext = React.createContext([]);
 
 export const useCartContext = () => useContext(CartContext);
@@ -29,8 +29,18 @@ const CartProvider = ({ children }) => {
 
     const totalQuantity = cart.reduce((acc, product) => acc + 1 * product.quantity, 0);
 
+    const addOrder = (order) => {
+        const db = getFirestore();
+        const ordersCollection = collection(db, "orders");
+        addDoc(ordersCollection, order).then(() => {
+            clearCart();
+        });
+    };
+
     return (
-        <CartContext.Provider value={{ clearCart, isInCart, removeProduct, addProduct, total, totalQuantity, cart }}>
+        <CartContext.Provider
+            value={{ clearCart, isInCart, removeProduct, addProduct, addOrder, total, totalQuantity, cart }}
+        >
             {children}
         </CartContext.Provider>
     );

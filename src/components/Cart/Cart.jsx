@@ -13,7 +13,26 @@ const Cart = () => {
 
     const handleShow = () => setShow(true);
 
-    const { totalQuantity } = useCartContext();
+    const { cart, totalQuantity, total, addOrder, clearCart } = useCartContext();
+
+    const order = {
+        buyer: {
+            name: "Mauricio",
+            surname: "Encina",
+            email: "maurixmre@gmail.com",
+            phone: "543534277226",
+            province: "Córdoba",
+            city: "Villa Maria",
+            address: "Mejico 1086",
+        },
+        items: cart.map((product) => ({
+            id: product.id,
+            title: product.name,
+            price: product.price,
+            quantity: product.quantity,
+        })),
+        total: total,
+    };
 
     return (
         <>
@@ -30,6 +49,18 @@ const Cart = () => {
                 </Offcanvas.Header>
                 <Offcanvas.Body>
                     <CartList />
+                    {cart.length > 0 && (
+                        <Button
+                            className="container-fluid fs-5"
+                            variant="dark"
+                            text="light"
+                            onClick={() => {
+                                addOrder(order);
+                            }}
+                        >
+                            <p className="pb-1 my-auto text-center bold">FINALIZAR COMPRA</p>
+                        </Button>
+                    )}
                 </Offcanvas.Body>
             </Offcanvas>
         </>

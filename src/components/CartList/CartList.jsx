@@ -63,11 +63,6 @@ const CartList = () => {
                             ${total}
                         </div>
                     </div>
-                    <Link to={`/checkout/${uuid()}`}>
-                        <Button className="container-fluid fs-5" variant="dark" text="light">
-                            <p className="pb-1 my-auto text-center bold">INICIAR COMPRA</p>
-                        </Button>
-                    </Link>
                 </>
             );
     } else {
