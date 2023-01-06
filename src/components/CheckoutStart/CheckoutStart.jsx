@@ -64,7 +64,7 @@ const CheckoutStart = () => {
             );
     }
     return (
-        <div className="p-4" key={uuid()}>
+        <div className="p-4 minHeight">
             <h4 className="border-bottom text-secondary bg-light badge fs-6">Detalle de compra</h4>
             {result}
         </div>

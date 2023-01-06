@@ -20,16 +20,15 @@ const NavBar = ({ menus }) => {
     }, []);
 
     return (
-        <>
-            <Navbar bg="dark" variant="dark">
-                <Container>
-                    {menus.map((menu) => {
-                        return (
-                            <Link key={uuid()} className="mx-4 navbar-brand" to={menu.href}>
-                                {menu.name}
-                            </Link>
-                        );
-                    })}
+        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+            <Container>
+                <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                <Navbar.Brand href="#home">
+                    <Link key={uuid()} className="mx-4 navbar-brand" to={"/"}>
+                        MW Shop
+                    </Link>
+                </Navbar.Brand>
+                <Navbar.Collapse id="responsive-navbar-nav">
                     <Nav className="me-auto">
                         {categorias.map((categoria) => {
                             return (
@@ -39,10 +38,10 @@ const NavBar = ({ menus }) => {
                             );
                         })}
                     </Nav>
-                </Container>
+                </Navbar.Collapse>
                 <CartWidget />
-            </Navbar>
-        </>
+            </Container>
+        </Navbar>
     );
 };
 

@@ -61,7 +61,7 @@ const CartList = () => {
     } else {
         result = (
             <div className="text-center">
-                <Badge className="fs-6 container-fluid" pill bg="light" text="dark">
+                <Badge className="fs-6" pill bg="light" text="dark">
                     El carrito de compras esta vacío 😔
                 </Badge>
             </div>
