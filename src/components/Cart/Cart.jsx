@@ -5,15 +5,19 @@ import Offcanvas from "react-bootstrap/Offcanvas";
 import CartIcon from "../icons/CartIcon";
 import Badge from "react-bootstrap/Badge";
 import CartList from "../CartList/CartList";
+import { Link } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 const Cart = () => {
+    const navigate = useNavigate();
+
     const [show, setShow] = useState(false);
 
     const handleClose = () => setShow(false);
 
     const handleShow = () => setShow(true);
 
-    const { cart, totalQuantity, total, addOrder, clearCart } = useCartContext();
+    const { cart, totalQuantity, total, addOrder } = useCartContext();
 
     const order = {
         buyer: {
@@ -27,7 +31,8 @@ const Cart = () => {
         },
         items: cart.map((product) => ({
             id: product.id,
-            title: product.name,
+            name: product.name,
+            img: product.img,
             price: product.price,
             quantity: product.quantity,
         })),
@@ -55,7 +60,9 @@ const Cart = () => {
                             variant="dark"
                             text="light"
                             onClick={() => {
+                                handleClose();
                                 addOrder(order);
+                                console.log(order);
                             }}
                         >
                             <p className="pb-1 my-auto text-center bold">FINALIZAR COMPRA</p>

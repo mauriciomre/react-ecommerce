@@ -52,30 +52,23 @@ const CartList = () => {
             })
             .concat(
                 <>
-                    <div
-                        key={uuid()}
-                        className="d-flex justify-content-between align-items-center mb-5 pt-3 border-top"
-                    >
-                        <div key={uuid()} className="fs-2">
-                            Total:
-                        </div>
-                        <div key={uuid()} className="fs-2 bold">
-                            ${total}
-                        </div>
+                    <div className="d-flex justify-content-between align-items-center mb-5 pt-3 border-top">
+                        <div className="fs-2">Total:</div>
+                        <div className="fs-2 bold">${total}</div>
                     </div>
                 </>
             );
     } else {
         result = (
-            <div key={uuid()} className="text-center">
-                <Badge key={uuid()} className="fs-6 container-fluid" pill bg="light" text="dark">
+            <div className="text-center">
+                <Badge className="fs-6 container-fluid" pill bg="light" text="dark">
                     El carrito de compras esta vacío 😔
                 </Badge>
             </div>
         );
     }
 
-    return <div key={uuid()}>{result}</div>;
+    return <div>{result}</div>;
 };
 
 export default CartList;

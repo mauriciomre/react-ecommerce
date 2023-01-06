@@ -1,10 +1,14 @@
 import React, { useState, useContext } from "react";
 import { getFirestore, collection, addDoc } from "firebase/firestore";
+import { useNavigate } from "react-router-dom";
+
 const CartContext = React.createContext([]);
 
 export const useCartContext = () => useContext(CartContext);
 
 const CartProvider = ({ children }) => {
+    const navigate = useNavigate();
+
     const [cart, setCart] = useState([]);
 
     const addProduct = (item, quantity) => {
@@ -32,8 +36,9 @@ const CartProvider = ({ children }) => {
     const addOrder = (order) => {
         const db = getFirestore();
         const ordersCollection = collection(db, "orders");
-        addDoc(ordersCollection, order).then(() => {
+        addDoc(ordersCollection, order).then(({ id }) => {
             clearCart();
+            navigate(`/checkout/start/${id}`);
         });
     };
 
