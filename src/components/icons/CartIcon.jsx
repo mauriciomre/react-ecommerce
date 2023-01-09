@@ -1,7 +1,7 @@
 import React from "react";
 import "./styles/Icons.css";
 
-const Cart = () => {
+const CartIcon = () => {
     return (
         <svg className="carrito" version="1.1" id="cart" x="0px" y="0px" viewBox="0 0 422 437" xmlSpace="preserve">
             <path
@@ -15,4 +15,4 @@ const Cart = () => {
     );
 };
 
-export default Cart;
+export default CartIcon;

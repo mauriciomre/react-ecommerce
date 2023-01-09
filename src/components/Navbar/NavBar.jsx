@@ -6,6 +6,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import { v4 as uuid } from "uuid";
+import Logo from "../icons/Logo";
 
 const NavBar = ({ menus }) => {
     const [categorias, setCategorias] = useState([]);
@@ -20,12 +21,12 @@ const NavBar = ({ menus }) => {
     }, []);
 
     return (
-        <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+        <Navbar className="mb-4" collapseOnSelect expand="lg" bg="dark" variant="dark" sticky="top">
             <Container>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Brand href="#home">
                     <Link key={uuid()} className="mx-4 navbar-brand" to={"/"}>
-                        MW Shop
+                        <Logo />
                     </Link>
                 </Navbar.Brand>
                 <Navbar.Collapse id="responsive-navbar-nav">

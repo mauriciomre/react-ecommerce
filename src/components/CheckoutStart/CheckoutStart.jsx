@@ -1,26 +1,20 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
-import { getFirestore, doc, getDoc } from "firebase/firestore";
 import { v4 as uuid } from "uuid";
 import Badge from "react-bootstrap/Badge";
+import BuyerForm from "../BuyerForm/BuyerForm";
+import { useCartContext } from "../../context/CartContext";
+import { useNavigate } from "react-router-dom";
 
 const CheckoutStart = () => {
-    const { orderId } = useParams();
-
-    const [data, setData] = useState({});
-
-    useEffect(() => {
-        const querydb = getFirestore();
-        const queryDoc = doc(querydb, "orders", orderId);
-        getDoc(queryDoc).then((res) => setData({ id: res.id, ...res.data() }));
-    }, [orderId]);
+    const navigate = useNavigate();
+    const { cart, total } = useCartContext();
 
     let result;
-    if (data.items) {
-        result = data.items
+    if (cart.length) {
+        result = cart
             .map((item) => {
                 return (
-                    <div key={uuid()} className="containe text-center border-light-subtle mb-2 p-3">
+                    <div key={uuid()} className="container text-center border-light-subtle mb-2 p-3">
                         <div key={uuid()} className="row">
                             <img className="img col-4" src={item.img} />
 
@@ -31,14 +25,14 @@ const CheckoutStart = () => {
 
                                 <div key={uuid()} className="d-flex justify-content-between align-items-center">
                                     <div key={uuid()} className="d-flex align-items-center">
-                                        <Badge key={uuid()} className="me-1" pill bg="light" text="secondary">
+                                        <Badge key={uuid()} className="me-1 text-wrap" pill bg="light" text="secondary">
                                             ${item.price}
                                         </Badge>
-                                        <Badge key={uuid()} pill bg="light" text="secondary">
+                                        <Badge key={uuid()} pill bg="light text-wrap" text="secondary">
                                             x{item.quantity}
                                         </Badge>
                                     </div>
-                                    <Badge key={uuid()} className="fs-7" pill bg="dark">
+                                    <Badge key={uuid()} className="fs-7 text-wrap" pill bg="dark">
                                         ${item.price * item.quantity}
                                     </Badge>
                                 </div>
@@ -57,16 +51,24 @@ const CheckoutStart = () => {
                             Total:
                         </div>
                         <div key={uuid()} className="fs-2 bold">
-                            ${data.total}
+                            ${total}
                         </div>
                     </div>
                 </>
             );
+    } else {
+        navigate("/");
     }
     return (
-        <div className="p-4 minHeight">
-            <h4 className="border-bottom text-secondary bg-light badge fs-6">Detalle de compra</h4>
-            {result}
+        <div className="row p-4 minHeight maxWidth mx-auto">
+            <div className="p-4 col-md-7 col-sm-12">
+                <BuyerForm cart={cart} total={total} />
+            </div>
+
+            <div className="p-4 col-md-5 col-sm-12">
+                <h4 className="border-bottom text-secondary bg-light badge fs-6">Detalle de compra</h4>
+                {result}
+            </div>
         </div>
     );
 };

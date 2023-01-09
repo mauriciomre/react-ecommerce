@@ -27,7 +27,7 @@ const ItemListContainer = () => {
     }, [categoriaId]);
 
     return (
-        <div className="listContainer minHeight">
+        <div className="listContainer minHeight maxWidth">
             <Row xs={1} md={3} className="g-4 container-fluid px-5 pt-4">
                 {item &&
                     item.map((producto) => {

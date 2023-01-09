@@ -9,7 +9,7 @@ export const useCartContext = () => useContext(CartContext);
 const CartProvider = ({ children }) => {
     const navigate = useNavigate();
 
-    const [cart, setCart] = useState([]);
+    const [cart, setCart] = useState(localStorage.getItem("cart") ? JSON.parse(localStorage.getItem("cart")) : []);
 
     const addProduct = (item, quantity) => {
         if (isInCart(item.id)) {
@@ -38,7 +38,7 @@ const CartProvider = ({ children }) => {
         const ordersCollection = collection(db, "orders");
         addDoc(ordersCollection, order).then(({ id }) => {
             clearCart();
-            navigate(`/checkout/start/${id}`);
+            navigate(`/checkout/finish/${id}`);
         });
     };
 

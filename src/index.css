@@ -35,6 +35,9 @@ code {
 
 img {
     width: 100%;
+    object-fit: contain;
+    object-position: center;
+    padding: 0 !important;
 }
 
 .hiddenBtn {
@@ -47,8 +50,7 @@ img {
 }
 
 .itemDetailImg {
-    width: 50vh;
-    max-width: 100em !important;
+    max-width: 30em !important;
 }
 
 .detailContainer {
@@ -61,4 +63,17 @@ img {
 
 .minHeight {
     min-height: 100vh;
+}
+
+.maxWidth {
+    max-width: 80em;
+}
+
+.logoNav {
+    width: 9em;
+    filter: invert(100%);
+}
+
+.center {
+    justify-self: center;
 }

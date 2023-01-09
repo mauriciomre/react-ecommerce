@@ -34,14 +34,14 @@ const CartList = () => {
 
                                 <div key={uuid()} className="d-flex justify-content-between align-items-center">
                                     <div key={uuid()} className="d-flex align-items-center">
-                                        <Badge key={uuid()} className="me-1" pill bg="light" text="secondary">
+                                        <Badge key={uuid()} className="me-1 text-wrap" pill bg="light" text="secondary">
                                             ${producto.price}
                                         </Badge>
-                                        <Badge key={uuid()} pill bg="light" text="secondary">
+                                        <Badge key={uuid()} pill bg="light text-wrap" text="secondary">
                                             x{producto.quantity}
                                         </Badge>
                                     </div>
-                                    <Badge key={uuid()} className="fs-7" pill bg="dark">
+                                    <Badge key={uuid()} className="fs-7 text-wrap" pill bg="dark">
                                         ${producto.price * producto.quantity}
                                     </Badge>
                                 </div>
