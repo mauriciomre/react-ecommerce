@@ -5,7 +5,6 @@ import Row from "react-bootstrap/Row";
 import { useState } from "react";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
-import { v4 as uuid } from "uuid";
 
 const ItemListContainer = () => {
     const [item, setItem] = useState([]);
@@ -31,7 +30,7 @@ const ItemListContainer = () => {
             <Row xs={1} md={3} className="g-4 container-fluid px-5 pt-4">
                 {item &&
                     item.map((producto) => {
-                        return <Item key={uuid()} producto={producto} />;
+                        return <Item key={producto.id} producto={producto} />;
                     })}
             </Row>
         </div>

@@ -1,5 +1,4 @@
 import React from "react";
-import { v4 as uuid } from "uuid";
 import Badge from "react-bootstrap/Badge";
 import BuyerForm from "../BuyerForm/BuyerForm";
 import { useCartContext } from "../../context/CartContext";
@@ -14,25 +13,25 @@ const CheckoutStart = () => {
         result = cart
             .map((item) => {
                 return (
-                    <div key={uuid()} className="container text-center border-light-subtle mb-2 p-3">
-                        <div key={uuid()} className="row">
+                    <div key={item.id} className="container text-center border-light-subtle mb-2 p-3">
+                        <div className="row">
                             <img className="img col-4" src={item.img} />
 
-                            <div key={uuid()} className="col-8 detail-item-container">
-                                <div key={uuid()} className="d-flex justify-content-between align-items-center">
-                                    <div key={uuid()}>{item.name}</div>
+                            <div className="col-8 detail-item-container">
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <div>{item.name}</div>
                                 </div>
 
-                                <div key={uuid()} className="d-flex justify-content-between align-items-center">
-                                    <div key={uuid()} className="d-flex align-items-center">
-                                        <Badge key={uuid()} className="me-1 text-wrap" pill bg="light" text="secondary">
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <div className="d-flex align-items-center">
+                                        <Badge className="me-1 text-wrap" pill bg="light" text="secondary">
                                             ${item.price}
                                         </Badge>
-                                        <Badge key={uuid()} pill bg="light text-wrap" text="secondary">
+                                        <Badge pill bg="light text-wrap" text="secondary">
                                             x{item.quantity}
                                         </Badge>
                                     </div>
-                                    <Badge key={uuid()} className="fs-7 text-wrap" pill bg="dark">
+                                    <Badge className="fs-7 text-wrap" pill bg="dark">
                                         ${item.price * item.quantity}
                                     </Badge>
                                 </div>
@@ -43,16 +42,9 @@ const CheckoutStart = () => {
             })
             .concat(
                 <>
-                    <div
-                        key={uuid()}
-                        className="d-flex justify-content-between align-items-center mb-5 pt-3 border-top"
-                    >
-                        <div key={uuid()} className="fs-2">
-                            Total:
-                        </div>
-                        <div key={uuid()} className="fs-2 bold">
-                            ${total}
-                        </div>
+                    <div className="d-flex justify-content-between align-items-center mb-5 pt-3 border-top">
+                        <div className="fs-2">Total:</div>
+                        <div className="fs-2 bold">${total}</div>
                     </div>
                 </>
             );

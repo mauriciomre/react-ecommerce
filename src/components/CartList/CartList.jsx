@@ -3,7 +3,6 @@ import { useCartContext } from "../../context/CartContext";
 import ItemRemoveIcon from "../icons/ItemRemoveIcon";
 import Badge from "react-bootstrap/Badge";
 import { Link } from "react-router-dom";
-import { v4 as uuid } from "uuid";
 
 const CartList = () => {
     const { removeProduct, cart, total } = useCartContext();
@@ -13,34 +12,30 @@ const CartList = () => {
         result = cart
             .map((producto) => {
                 return (
-                    <div key={uuid()} className="containe text-center border-light-subtle mb-2 p-3">
-                        <div key={uuid()} className="row">
+                    <div key={producto.id} className="text-center border-light-subtle mb-2 p-3">
+                        <div className="row">
                             <Link className="nav-link col-4" to={`/item/${producto.id}`}>
                                 <img className="img" src={producto.img} />
                             </Link>
 
-                            <div key={uuid()} className="col-8 detail-item-container">
-                                <div key={uuid()} className="d-flex justify-content-between align-items-center">
-                                    <div key={uuid()}>{producto.name}</div>
-                                    <button
-                                        key={uuid()}
-                                        className="hiddenBtn"
-                                        onClick={() => removeProduct(producto.id)}
-                                    >
+                            <div className="col-8 detail-item-container">
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <div>{producto.name}</div>
+                                    <button className="hiddenBtn" onClick={() => removeProduct(producto.id)}>
                                         <ItemRemoveIcon />
                                     </button>
                                 </div>
 
-                                <div key={uuid()} className="d-flex justify-content-between align-items-center">
-                                    <div key={uuid()} className="d-flex align-items-center">
-                                        <Badge key={uuid()} className="me-1 text-wrap" pill bg="light" text="secondary">
+                                <div className="d-flex justify-content-between align-items-center">
+                                    <div className="d-flex align-items-center">
+                                        <Badge className="me-1 text-wrap" pill bg="light" text="secondary">
                                             ${producto.price}
                                         </Badge>
-                                        <Badge key={uuid()} pill bg="light text-wrap" text="secondary">
+                                        <Badge pill bg="light text-wrap" text="secondary">
                                             x{producto.quantity}
                                         </Badge>
                                     </div>
-                                    <Badge key={uuid()} className="fs-7 text-wrap" pill bg="dark">
+                                    <Badge className="fs-7 text-wrap" pill bg="dark">
                                         ${producto.price * producto.quantity}
                                     </Badge>
                                 </div>

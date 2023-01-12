@@ -5,10 +5,10 @@ import CartWidget from "../CartWidget/CartWidget";
 import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
-import { v4 as uuid } from "uuid";
+
 import Logo from "../icons/Logo";
 
-const NavBar = ({ menus }) => {
+const NavBar = () => {
     const [categorias, setCategorias] = useState([]);
 
     useEffect(() => {
@@ -25,7 +25,7 @@ const NavBar = ({ menus }) => {
             <Container>
                 <Navbar.Toggle aria-controls="responsive-navbar-nav" />
                 <Navbar.Brand href="#home">
-                    <Link key={uuid()} className="mx-4 navbar-brand" to={"/"}>
+                    <Link className="mx-4 navbar-brand" to={"/"}>
                         <Logo />
                     </Link>
                 </Navbar.Brand>
@@ -33,7 +33,7 @@ const NavBar = ({ menus }) => {
                     <Nav className="me-auto">
                         {categorias.map((categoria) => {
                             return (
-                                <Link key={uuid()} className="mx-2 nav-link" to={`/category/${categoria.id}`}>
+                                <Link key={categoria.id} className="mx-2 nav-link" to={`/category/${categoria.id}`}>
                                     {categoria.name}
                                 </Link>
                             );
