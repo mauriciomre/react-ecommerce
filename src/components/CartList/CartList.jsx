@@ -1,8 +1,7 @@
-import React, { useState } from "react";
+import React from "react";
 import { useCartContext } from "../../context/CartContext";
 import ItemRemoveIcon from "../icons/ItemRemoveIcon";
 import Badge from "react-bootstrap/Badge";
-import Button from "react-bootstrap/Button";
 import { Link } from "react-router-dom";
 import { v4 as uuid } from "uuid";
 

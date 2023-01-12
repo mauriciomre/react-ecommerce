@@ -1,9 +1,8 @@
 import React, { useState, useEffect } from "react";
-import { useCartContext } from "../../context/CartContext";
 import Button from "react-bootstrap/Button";
 import ButtonGroup from "react-bootstrap/ButtonGroup";
 
-const ItemCount = ({ initial, stock, onAdd }) => {
+const ItemCount = ({ initial, stock, onAdd, isLoading }) => {
     const [count, setCount] = useState(initial);
 
     const decrease = () => {
@@ -29,7 +28,7 @@ const ItemCount = ({ initial, stock, onAdd }) => {
             </ButtonGroup>
             <Button
                 className="badge rounded-pill p-3"
-                disabled={stock <= 0}
+                disabled={stock <= 0 || !isLoading}
                 onClick={() => {
                     onAdd(count);
                 }}

@@ -2,7 +2,7 @@ import React from "react";
 import { useCartContext } from "../../context/CartContext";
 import ItemCount from "../ItemCount/ItemCount";
 
-const ItemDetail = ({ data }) => {
+const ItemDetail = ({ data, isLoading }) => {
     const { addProduct } = useCartContext();
 
     const onAdd = (quantity) => {
@@ -19,7 +19,8 @@ const ItemDetail = ({ data }) => {
                     <div className="detailContainer">
                         <span className="fs-2 bold">{data.name}</span>
                         <span className="fs-4">${data.price}</span>
-                        <ItemCount initial={1} stock={data.stock} onAdd={onAdd} />
+
+                        <ItemCount initial={1} stock={data.stock} onAdd={onAdd} isLoading={isLoading} />
                     </div>
                 </div>
             </div>

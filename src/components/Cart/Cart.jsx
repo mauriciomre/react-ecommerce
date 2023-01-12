@@ -25,7 +25,11 @@ const Cart = () => {
     return (
         <>
             <Button className="d-flex flex-row-reverse position-relative" variant="outline-dark" onClick={handleShow}>
-                <Badge pill className="front mx-1 position-absolute top-90 start-50" bg="success">
+                <Badge
+                    pill
+                    className="front mx-1 position-absolute top-90 start-50"
+                    bg={cart.length ? "success" : "secondary"}
+                >
                     {totalQuantity > 99 ? "99+" : totalQuantity}
                 </Badge>
                 <CartIcon />
